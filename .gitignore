@@ -1,0 +1,29 @@
+# Ignore environment variable file
+.env
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*.sqlite3
+
+# Virtual environment
+venv/
+venv310/
+ENV/
+env/
+
+# VSCode settings
+.vscode/
+
+# Django static/media
+staticfiles/
+media/
+# Ignore local model/data files
+*.json
+*.h5
+*.csv
+upload_files.py
+/cached_files/*
+!cached_files/.gitignore
+
+
