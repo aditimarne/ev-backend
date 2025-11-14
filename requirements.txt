@@ -8,10 +8,11 @@ pymongo==4.13.0
 dnspython==2.7.0
 mongoengine==0.29.1
 python-dotenv==1.1.1
-certifi==2025.6.15
+certifi==2024.07.04
 
+# ML LIBRARIES (COMPATIBLE WITH PYTHON 3.10 + TENSORFLOW 2.12)
 numpy==1.23.5
-pandas==2.0.3
+pandas==1.5.3
 scikit-learn==1.2.2
 xgboost==1.7.6
 
@@ -19,3 +20,4 @@ tensorflow-cpu==2.12.0
 h5py==3.8.0
 
 gunicorn==23.0.0
+    
