@@ -1,12 +1,14 @@
 
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 import certifi
 from mongoengine import connect
 from pymongo import MongoClient
 from gridfs import GridFS
-from dotenv import load_dotenv
 
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,35 +34,42 @@ INSTALLED_APPS = [
 
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.IsAuthenticated",
+         "rest_framework.permissions.AllowAny",
     ],
 
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "users.authentication.MongoJWTAuthentication",
     ),
 }
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
+ALLOWED_HOSTS = ["*"]
 
 
-
-
-load_dotenv()
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG", "True") == "True"
 FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
+cMONGO_URI = os.getenv("MONGO_URI")
+MONGO_DB = os.getenv("MONGO_DB", "AuthDB")
+MONGO_USER = os.getenv("MONGO_USER")
+MONGO_PASS = os.getenv("MONGO_PASS")
+
+if not MONGO_URI:
+    raise Exception("❌ MONGO_URI is missing")
+
 connect(
-    db=os.getenv("MONGO_DB"),
-    username=os.getenv("MONGO_USER"),
-    password=os.getenv("MONGO_PASS"),
-    host=os.getenv("MONGO_URI")
+    db=MONGO_DB,
+    host=MONGO_URI,
+    username=MONGO_USER,
+    password=MONGO_PASS
 )
-client = MongoClient(os.getenv("MONGO_URI"))
-db = client[os.getenv("MONGO_DB")]
+
+client = MongoClient(MONGO_URI)
+db = client[MONGO_DB]
 fs = GridFS(db)
 
+
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # For collectstatic
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 
