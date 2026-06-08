@@ -19,7 +19,7 @@ db = client[MONGO_DB]
 fs = GridFS(db)
 
 # Hugging Face–safe cache directory
-CACHE_DIR = "/data/cached_files"
+CACHE_DIR = "/tmp/cached_files"
 os.makedirs(CACHE_DIR, exist_ok=True)
 
 
