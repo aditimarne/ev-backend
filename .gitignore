@@ -25,5 +25,6 @@ media/
 upload_files.py
 /cached_files/*
 !cached_files/.gitignore
-
+*.pyc
+EOF
 

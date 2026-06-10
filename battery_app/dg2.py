@@ -69,11 +69,17 @@ def load_resources():
         _soh_model = xgb.XGBRegressor()
         _soh_model.load_model(soh_path)
 
+
     if _rul_model is None:
-        rul_path = get_file_from_gridfs("rul1_model.h5")
+        rul_path = get_file_from_gridfs("rul1_model_v2.h5")
+        tf.keras.backend.clear_session()
         _rul_model = tf.keras.models.load_model(
             rul_path,
-            custom_objects=custom_objects
+            compile=False,
+            custom_objects={
+                **custom_objects,
+                    'InputLayer': tf.keras.layers.InputLayer
+            }
         )
 
 

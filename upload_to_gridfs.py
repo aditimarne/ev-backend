@@ -15,7 +15,11 @@ FILES = [
     "rul2_lstm_model.h5",
     "RV4.csv",
     "soh1_model.json",
-    "rul1_model.h5"
+    "rul1_model.h5",
+    "rul1_model_fixed.h5",       
+    "rul2_lstm_model_fixed.h5",
+    "rul1_model_v2.h5",        
+    "rul2_lstm_model_v2.h5"
 ]
 
 for file in FILES:

@@ -11,7 +11,7 @@ app = FastAPI(title="EV Battery ML Backend")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[" https://evbatteryhealth.vercel.app/"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
